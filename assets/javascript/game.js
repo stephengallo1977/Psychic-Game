@@ -1,5 +1,6 @@
 // Create a small array
 var letters = ["a", "b", "c"]
+
 // Create an empty array to hold what the user guesses
 
 // Create a variable that will be randomly assigned one of the three letters
@@ -24,7 +25,6 @@ var newLetter = function () {
     console.log(psychicLetter);
 };
 
-
 // In the update guesses left function create a code to grab the HTML element and setting it equal to the guesses left.
 // (i.e. guesses left will get displayed in HTML)
 // In the update guesses function we get a random letter-to-guess and assign it based on a random generator (only looking at a, b, or c)
@@ -48,13 +48,13 @@ var updateWins = function () {
 
 //I updated this as per your feedback by adding  guesses = 3; and also resetHTML();
 var newGame = function () {
-    guessedLetters = [];
+    guessesSoFar = [];
     left = 3;
     guesses = 3;
     newLetter();
     guessesLeft();
     soFar();
-    resetHTML();
+   
 }
 // Create a reset function will be called when we reset everything
 // The reset Function should assign the values of the variables to their original values before the user started to play
@@ -62,12 +62,7 @@ var newGame = function () {
 
 
 //** I fixed my resets and added this code as per your feedback**
-function resetHTML() {
-    document.getElementById("wins");
-    document.getElementById("losses");
-    document.getElementById("left");
-    document.getElementById("guesses");
-}
+//
 // Create a document.onkeydown function that will capture the keyboard clicks.
 
 // This function should reduce the guesses by one
@@ -115,20 +110,6 @@ document.onkeyup = function (event) {
         document.getElementById("losses").innerHTML = "Losses:" + losses;
         newGame();
     }
-    left--;
-    guessesSoFar.push(userGuess);
-    soFar();
-    guessesLeft();
-    if (left > 0) {
-        if (userGuess == psychicLetter) {
-            wins++;
-            document.getElementById("wins").innerHTML = "Wins:" + wins;
-            newGame();
-        }
-    } else if (left == 0) {
-        losses++;
-        document.getElementById("losses").innerHTML = "Losses:" + losses;
-        newGame();
-    }
 };
 
+newGame();
